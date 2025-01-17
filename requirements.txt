@@ -2,3 +2,4 @@ Flask
 requests
 Pillow
 numpy
+gunicorn==21.2.0
