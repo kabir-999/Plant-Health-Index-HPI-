@@ -2,7 +2,7 @@ import os
 import matplotlib
 matplotlib.use('Agg')  # Use Agg backend for matplotlib (no GUI)
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,7 +32,7 @@ def calculate_hpi_from_image(image):
     hpi_percentage = hpi_normalized * 100
     return hpi_normalized, hpi_percentage
 
-# Main route to handle image upload and HPI calculation
+# Web Interface Route (Handles both the web form and file upload)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     predicted_hpi = None
@@ -87,6 +87,43 @@ def index():
             error_message = str(e)
 
     return render_template('index.html', predicted_hpi=predicted_hpi, health_status=health_status, error_message=error_message, spectral_image_path=spectral_image_path)
+
+
+# API Endpoint to handle image upload and HPI calculation (for API requests)
+@app.route('/health_status', methods=['POST'])
+def health_status_api():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No file uploaded'}), 400
+
+    image_file = request.files['image']
+
+    try:
+        image = Image.open(image_file)
+        _, hpi_percentage = calculate_hpi_from_image(image)
+        avg_hpi = np.mean(hpi_percentage)
+
+        # Determine health status
+        if avg_hpi < 25:
+            health_status = "Poor"
+        elif 25 <= avg_hpi < 50:
+            health_status = "Moderate"
+        elif 50 <= avg_hpi < 75:
+            health_status = "Good"
+        else:
+            health_status = "Excellent"
+
+        # Generate the spectral image
+        spectral_image_path = f"spectral_images/spectral_{image_file.filename}"
+
+        return jsonify({
+            'predicted_hpi': round(avg_hpi, 2),
+            'health_status': health_status,
+            'spectral_image': spectral_image_path
+        })
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
