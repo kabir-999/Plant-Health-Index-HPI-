@@ -1,113 +1,75 @@
-/* Overall Page Styling */
+/* General Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    background-color: #FFBCB3; /* Light pink background */
+    font-family: Arial, sans-serif;
+    text-align: center;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-/* Centered container */
-.container {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 30px 50px;
-    border-radius: 15px;
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
-    width: 500px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.container:hover {
-    transform: scale(1.05);
-}
-
-/* Header styling */
 h1 {
-    font-size: 2.5em;
-    color: #4A90E2;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+    color: #2C3E50;  /* Dark text color */
+    margin-top: 50px;
 }
 
-/* Form and input styles */
+.container {
+    background-color: #FFFAF1;  /* Light background for the form */
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 form {
     margin-bottom: 20px;
 }
 
-input[type="file"] {
-    padding: 12px;
-    width: 80%;
-    margin: 15px 0;
-    font-size: 1.2em;
-    border: 2px solid #4A90E2;
-    border-radius: 10px;
-    background: #fff;
+label {
+    font-size: 18px;
     color: #333;
-    transition: all 0.3s ease;
 }
 
-input[type="file"]:hover {
-    border-color: #ff7e5f;
-    box-shadow: 0px 0px 10px rgba(255, 126, 95, 0.6);
+input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 60%;
 }
 
 button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    background: #ff7e5f;
+    padding: 10px 20px;
+    background-color: #F8A5B2; /* Soft button color */
     color: white;
+    font-size: 16px;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
+    border-radius: 5px;
 }
 
 button:hover {
-    background: #feb47b;
-    transform: scale(1.1);
+    background-color: #F44336; /* Button hover color */
 }
 
-/* Display results (health status, average HPI) */
-h2, h3 {
-    font-size: 1.5em;
-    color: #4A90E2;
+.error-message {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.result {
     margin-top: 20px;
 }
 
-h2 {
-    font-weight: bold;
-    color: #ff7e5f;
+h3, p {
+    color: #2C3E50;
 }
 
-h3 {
-    font-weight: normal;
+img {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
-
-/* Error message styling */
-p {
-    color: red;
-    font-weight: bold;
-    font-size: 1.1em;
-    margin-top: 15px;
-}
-
-/* Smooth animation for elements */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.container {
-    animation: fadeIn 1s ease-in-out;
-}
-

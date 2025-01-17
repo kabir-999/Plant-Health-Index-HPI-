@@ -7,6 +7,7 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from urllib.parse import quote  # For URL encoding (in case needed)
 
 app = Flask(__name__)
 

@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Health Index (HPI) Calculator</title>
+    <title>PLANT HEALTH INDEX (HPI) CALCULATOR</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Plant Health Index (HPI) Calculator</h1>
-        
+        <h1>PLANT HEALTH INDEX (HPI) CALCULATOR</h1>
+
         <form method="POST" enctype="multipart/form-data">
-            <label for="image">Upload Image:</label><br>
-            <input type="file" id="image" name="image" required><br><br>
+            <label for="image">Upload Image:</label>
+            <input type="file" name="image" id="image" required>
             <button type="submit">Submit</button>
         </form>
 
         {% if error_message %}
-            <p style="color: red;">Error: {{ error_message }}</p>
+            <p class="error-message">{{ error_message }}</p>
         {% endif %}
 
-        {% if predicted_hpi is not none %}
-            <h2>Health Status: {{ health_status }}</h2>
-            <h3>Average HPI: {{ predicted_hpi }}</h3>
-
-            {% if spectral_image_path %}
-                <h3>Spectral Image:</h3>
-                <img src="{{ url_for('static', filename=spectral_image_path) }}" alt="Spectral Image" style="width: 100%; border-radius: 10px;">
-            {% endif %}
+        {% if predicted_hpi %}
+            <div class="result">
+                <h3>Health Status: {{ health_status }}</h3>
+                <p>Average HPI: {{ predicted_hpi }}</p>
+                <h4>Spectral Image:</h4>
+                <img src="{{ url_for('static', filename=spectral_image_path) }}" alt="Spectral Image">
+            </div>
         {% endif %}
     </div>
 </body>
