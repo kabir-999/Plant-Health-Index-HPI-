@@ -62,9 +62,9 @@ def index():
             avg_hpi = np.mean(hpi_percentage)
 
             # Determine health status
-            if avg_hpi < 25:
+            if avg_hpi < 40:
                 health_status = "Poor"
-            elif 25 <= avg_hpi < 50:
+            elif 40<= avg_hpi < 50:
                 health_status = "Moderate"
             elif 50 <= avg_hpi < 75:
                 health_status = "Good"
